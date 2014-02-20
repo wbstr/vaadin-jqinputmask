@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.wcs.wcslib</groupId>
+    <artifactId>wcslib-vaadin-widget-jqinputmask</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>JqInputMask</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <vaadin.version>7.1.0</vaadin.version>
+        <vaadin.plugin.version>${vaadin.version}</vaadin.plugin.version>
+
+        <!-- ZIP Manifest fields -->
+        <Implementation-Version>${project.version}</Implementation-Version>
+        <!-- Must not change this because of the Directory -->
+        <Implementation-Title>${project.name}</Implementation-Title>
+        <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+        <Vaadin-License-Title>Apache License 2.0</Vaadin-License-Title>
+        <Vaadin-Addon>${project.artifactId}-${project.version}.jar</Vaadin-Addon>
+    </properties>
+
+    <organization>
+        <name>Webstar Csoport</name>
+        <url>https://github.com/wbstr/</url>
+    </organization>
+    
+    <scm>
+        <url>https://github.com/wbstr/vaadin-jqinputmask.git</url>
+        <connection>scm:git:git@github.com:wbstr/vaadin-jqinputmask.git</connection>
+        <developerConnection>scm:git:git@github.com:wbstr/vaadin-jqinputmask.git</developerConnection>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/wbstr/vaadin-jqinputmask/issues</url>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-server</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <!-- Package format version - do not change -->
+                            <Vaadin-Package-Version>1</Vaadin-Package-Version>
+                            <Vaadin-License-Title>${Vaadin-License-Title}</Vaadin-License-Title>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+			
+        </plugins>
+
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus.wcs.local</id>
+            <url>http://nexus.wcs.local:8081/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus.wcs.local</id>
+            <url>http://nexus.wcs.local:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>
