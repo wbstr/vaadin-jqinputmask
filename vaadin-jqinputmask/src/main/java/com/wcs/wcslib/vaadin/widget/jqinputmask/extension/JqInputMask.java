@@ -61,12 +61,28 @@ public class JqInputMask {
         return new DecimalOptions(target, "decimal");
     }
 
+    public static DecimalOptions integer(AbstractClientConnector target) {
+        return new DecimalOptions(target, "integer");
+    }
+
+    public static RegexOptions regex(AbstractClientConnector target) {
+        return new RegexOptions(target, "Regex");
+    }
+
     public static DateOptions date(AbstractClientConnector target, String datePattern) {
         return new DateOptions(target, datePattern);
     }
 
     public static Options ip(AbstractClientConnector target) {
         return new Options(target, "ip");
+    }
+
+    public static UrlOptions url(AbstractClientConnector target) {
+        return new UrlOptions(target, "url");
+    }
+
+    public static PhoneOptions phone(AbstractClientConnector target) {
+        return new PhoneOptions(target, "phone");
     }
 
     public static void remove(AbstractClientConnector target) {

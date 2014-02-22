@@ -42,4 +42,15 @@ public class DecimalOptions extends AbstractOptions<DecimalOptions> {
         return put("autoGroup", autoGroup);
     }
 
+    public DecimalOptions alowMinus(boolean alowMinus) {
+        return put("alowMinus", alowMinus);
+    }
+
+    public DecimalOptions alowPlus(boolean alowPlus) {
+        return put("alowMinus", alowPlus);
+    }
+    
+    public DecimalOptions fractionalDigits(int fractionalDigits) {
+        return put("digits", fractionalDigits);
+    }
 }

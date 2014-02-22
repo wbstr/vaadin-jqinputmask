@@ -1,0 +1,37 @@
+/*
+ * Copyright 2014 Webstar Csoport.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.wcs.wcslib.vaadin.widget.jqinputmask.extension;
+
+import com.vaadin.server.AbstractClientConnector;
+
+/**
+ *
+ * @author kumm
+ */
+public class RegexOptions extends AbstractOptions<RegexOptions>{
+
+    public RegexOptions(AbstractClientConnector target, String fn) {
+        super(target, fn);
+    }
+
+    public RegexOptions() {
+    }
+    
+    public RegexOptions regex(String regex) {
+        return put("regex", regex);
+    }
+}
