@@ -43,7 +43,6 @@ public class DemoUI extends UI {
     @VaadinServletConfiguration(productionMode = false, ui = DemoUI.class)
     public static class Servlet extends VaadinServlet {
     }
-
     private VerticalLayout root = new VerticalLayout();
 
     @Override
@@ -54,7 +53,6 @@ public class DemoUI extends UI {
         final TextField textField = new TextField("test");
         JqInputMask.mask(textField, "(999) 999-9999").apply();
         root.addComponent(new HorizontalLayout(textField, new Button("unmask test", new Button.ClickListener() {
-
             @Override
             public void buttonClick(Button.ClickEvent event) {
                 JqInputMask.remove(textField);
@@ -74,18 +72,18 @@ public class DemoUI extends UI {
         JqInputMask.decimal(decimal)
                 .groupSeparator(',')
                 .groupSize(3)
-                .autoGroup(true)                
+                .autoGroup(true)
                 .radixPoint('.')
+                .allowMinus(false)
                 .apply();
         root.addComponent(decimal);
 
         TextField hexa = new TextField("hexa");
         JqInputMask.mask(hexa, "XXXX")
                 .define('X', new Definition()
-                        .validator("[0-9A-Fa-f]")
-                        .cardinality(1)
-                        .casingUpper()
-                )
+                .validator("[0-9A-Fa-f]")
+                .cardinality(1)
+                .casingUpper())
                 .apply();
         root.addComponent(hexa);
 
