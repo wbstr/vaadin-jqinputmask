@@ -16,8 +16,12 @@
 package com.wcs.wcslib.vaadin.widget.jqinputmask.extension;
 
 import com.vaadin.server.AbstractClientConnector;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import elemental.json.JsonArray;
+import elemental.json.JsonObject;
+import elemental.json.impl.JreJsonArray;
+import elemental.json.impl.JreJsonFactory;
+import elemental.json.impl.JreJsonObject;
+import elemental.json.impl.JreJsonString;
 
 /**
  *
@@ -48,19 +52,19 @@ public abstract class AbstractOptions<T extends AbstractOptions> extends JSONObj
     }
 
     private void addMask(String mask) {
-        JSONObject json = unwrap();
-        String strMask = json.optString("mask", null);
+        JsonObject json = unwrap();
+        JreJsonString strMask = json.get("mask");
         if (strMask != null) {
-            JSONArray arrayMask = new JSONArray();
-            arrayMask.put(strMask);
-            arrayMask.put(mask);
+            JsonArray arrayMask = new JreJsonArray(new JreJsonFactory());
+            arrayMask.set(0, strMask.getString());
+            arrayMask.set(1, mask);
             put("mask", arrayMask);
         } else {
-            JSONArray arrayMask = json.optJSONArray("mask");
+            JsonArray arrayMask = json.get("mask");
             if (arrayMask == null) {
                 put("mask", mask);
             } else {
-                arrayMask.put(mask);
+                arrayMask.set(0, mask);
             }
         }
     }
@@ -122,9 +126,9 @@ public abstract class AbstractOptions<T extends AbstractOptions> extends JSONObj
     }
 
     public T define(char key, Definition definition) {
-        JSONObject definitions = unwrap().optJSONObject("definitions");
+        JsonObject definitions = unwrap().getObject("definitions");
         if (definitions == null) {
-            definitions = new JSONObject();
+            definitions = new JreJsonObject(new JreJsonFactory());
             put("definitions", definitions);
         }
         new JSONObjectWrapper(definitions).put("" + key, definition.unwrap());

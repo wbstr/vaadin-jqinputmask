@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.wcs.wcslib.vaadin.widget.jqinputmask.extension;
 
+import elemental.json.JsonArray;
+import elemental.json.impl.JreJsonArray;
+import elemental.json.impl.JreJsonFactory;
 import java.util.regex.Pattern;
-import org.json.JSONArray;
 
 /**
  *
@@ -50,13 +51,13 @@ public class Definition extends JSONObjectWrapper<Definition> {
     }
 
     public Definition prevalidator(Definition definition) {
-        JSONArray prevalidator = unwrap().optJSONArray("prevalidator");
+        JsonArray prevalidator = unwrap().get("prevalidator");
         if (prevalidator == null) {
-            prevalidator = new JSONArray();
+            prevalidator = new JreJsonArray(new JreJsonFactory());
             put("prevalidator", prevalidator);
         }
-        prevalidator.put(definition.unwrap());
+        prevalidator.set(0, definition.unwrap());
         return this;
     }
-    
+
 }

@@ -34,7 +34,7 @@ public class DateOptions extends AbstractOptions<DateOptions> {
         JSONObjectWrapper yearrange = new JSONObjectWrapper();
         yearrange.put("minyear", minyear);
         yearrange.put("maxyear", maxyear);
-        return put("yearrange", yearrange);
+        return put("yearrange", yearrange.unwrap());
     }
 
 }

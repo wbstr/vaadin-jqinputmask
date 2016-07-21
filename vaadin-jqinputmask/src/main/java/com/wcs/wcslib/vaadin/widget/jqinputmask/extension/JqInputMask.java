@@ -20,8 +20,8 @@ import com.vaadin.server.AbstractClientConnector;
 import com.vaadin.server.AbstractJavaScriptExtension;
 import com.vaadin.server.Extension;
 import com.vaadin.ui.UI;
+import elemental.json.JsonObject;
 import java.util.Collection;
-import org.json.JSONObject;
 
 /**
  *
@@ -36,7 +36,7 @@ public class JqInputMask {
             extend(target);
         }
 
-        private JSONObject unwrapJSON(JSONObjectWrapper wrapper) {
+        private JsonObject unwrapJSON(JSONObjectWrapper wrapper) {
             return wrapper != null ? wrapper.unwrap() : null;
         }
 
@@ -92,7 +92,7 @@ public class JqInputMask {
         }
         instance.inputmask("remove", null);
     }
-    
+
     public static void invoke(AbstractClientConnector target, String fn, AbstractOptions options) {
         final JqInputMaskExtension instance = findOrCreateExtensionInstance(target);
         instance.inputmask(fn, options);

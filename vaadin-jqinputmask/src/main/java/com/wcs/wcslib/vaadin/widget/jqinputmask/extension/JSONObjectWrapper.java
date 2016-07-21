@@ -13,38 +13,77 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.wcs.wcslib.vaadin.widget.jqinputmask.extension;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import elemental.json.JsonException;
+import elemental.json.JsonObject;
+import elemental.json.JsonValue;
+import elemental.json.impl.JreJsonFactory;
+import elemental.json.impl.JreJsonObject;
 
 /**
  *
  * @author kumm
  */
 class JSONObjectWrapper<T extends JSONObjectWrapper> {
-    private JSONObject json;
+
+    private JsonObject json;
 
     public JSONObjectWrapper() {
-        this(new JSONObject());
+        this(new JreJsonObject(new JreJsonFactory()));
     }
 
-    public JSONObjectWrapper(JSONObject json) {
+    public JSONObjectWrapper(JsonObject json) {
         this.json = json;
     }
 
-    protected T put(String key, Object value) {
+    protected T put(String key, JsonValue value) {
         try {
             json.put(key, value);
-        } catch (JSONException ex) {
+        } catch (JsonException ex) {
             throw new RuntimeException(ex);
         }
-        return (T)this;
+        return (T) this;
     }
 
-    protected JSONObject unwrap() {
+    protected T put(String key, char value) {
+        try {
+            json.put(key, String.valueOf(value));
+        } catch (JsonException ex) {
+            throw new RuntimeException(ex);
+        }
+        return (T) this;
+    }
+
+    protected T put(String key, int value) {
+        try {
+            json.put(key, value);
+        } catch (JsonException ex) {
+            throw new RuntimeException(ex);
+        }
+        return (T) this;
+    }
+
+    protected T put(String key, boolean value) {
+        try {
+            json.put(key, value);
+        } catch (JsonException ex) {
+            throw new RuntimeException(ex);
+        }
+        return (T) this;
+    }
+
+    protected T put(String key, String value) {
+        try {
+            json.put(key, value);
+        } catch (JsonException ex) {
+            throw new RuntimeException(ex);
+        }
+        return (T) this;
+    }
+
+    protected JsonObject unwrap() {
         return json;
     }
-    
+
 }
