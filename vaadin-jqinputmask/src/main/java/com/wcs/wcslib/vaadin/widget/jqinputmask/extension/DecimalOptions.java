@@ -53,4 +53,12 @@ public class DecimalOptions extends AbstractOptions<DecimalOptions> {
     public DecimalOptions fractionalDigits(int fractionalDigits) {
         return put("digits", fractionalDigits);
     }
+    
+    public DecimalOptions prefix(String prefix) {
+        return put("prefix", prefix);
+    }
+
+    public DecimalOptions suffix(String suffix) {
+        return put("suffix", suffix);
+    }
 }
