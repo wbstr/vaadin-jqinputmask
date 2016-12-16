@@ -18,7 +18,9 @@ package com.wcs.wcslib.vaadin.widget.jquerymask;
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.annotations.Widgetset;
 import com.vaadin.data.Property;
+import com.vaadin.event.FieldEvents;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.*;
@@ -46,6 +48,9 @@ public class DemoUI extends UI {
         setContent(root);
         root.setMargin(true);
 
+        final Label output = new Label();
+        root.addComponent(output);
+
         final Property.ValueChangeListener changeListener = new Property.ValueChangeListener() {
             @Override
             public void valueChange(Property.ValueChangeEvent event) {
@@ -56,6 +61,13 @@ public class DemoUI extends UI {
         final TextField textField = new TextField("test");
         JqInputMask.mask(textField, "(999) 999-9999").apply();
         textField.addValueChangeListener(changeListener);
+        textField.addTextChangeListener(new FieldEvents.TextChangeListener() {
+            @Override
+            public void textChange(FieldEvents.TextChangeEvent event) {
+                output.setValue(event.getText());
+            }
+        });
+        textField.setTextChangeEventMode(AbstractTextField.TextChangeEventMode.EAGER);
 
         root.addComponent(new HorizontalLayout(textField, new Button("unmask test", new Button.ClickListener() {
             @Override
@@ -83,6 +95,7 @@ public class DemoUI extends UI {
                 .autoGroup(true)
                 .radixPoint('.')
                 .allowMinus(false)
+                .suffix(" HUF")
                 .apply();
         decimal.addValueChangeListener(changeListener);
         root.addComponent(decimal);
