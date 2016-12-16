@@ -18,14 +18,10 @@ package com.wcs.wcslib.vaadin.widget.jquerymask;
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.data.Property;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.DateField;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.*;
 import com.wcs.wcslib.vaadin.widget.jqinputmask.extension.Definition;
 import com.wcs.wcslib.vaadin.widget.jqinputmask.extension.JqInputMask;
 import javax.servlet.annotation.WebServlet;
@@ -50,8 +46,17 @@ public class DemoUI extends UI {
         setContent(root);
         root.setMargin(true);
 
+        final Property.ValueChangeListener changeListener = new Property.ValueChangeListener() {
+            @Override
+            public void valueChange(Property.ValueChangeEvent event) {
+                Notification.show(event.getProperty().getValue().toString());
+            }
+        };
+
         final TextField textField = new TextField("test");
         JqInputMask.mask(textField, "(999) 999-9999").apply();
+        textField.addValueChangeListener(changeListener);
+
         root.addComponent(new HorizontalLayout(textField, new Button("unmask test", new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
@@ -62,10 +67,13 @@ public class DemoUI extends UI {
         DateField dateField = new DateField("date");
         dateField.setDateFormat("yyyy.MM.dd");
         JqInputMask.date(dateField, "yyyy.mm.dd").placeholder("éééé.hh.nn").apply();
+        dateField.addValueChangeListener(changeListener);
         root.addComponent(dateField);
+
 
         TextField ip = new TextField("IP");
         JqInputMask.ip(ip).apply();
+        ip.addValueChangeListener(changeListener);
         root.addComponent(ip);
 
         TextField decimal = new TextField("decimal");
@@ -76,6 +84,7 @@ public class DemoUI extends UI {
                 .radixPoint('.')
                 .allowMinus(false)
                 .apply();
+        decimal.addValueChangeListener(changeListener);
         root.addComponent(decimal);
 
         TextField hexa = new TextField("hexa");
@@ -85,6 +94,7 @@ public class DemoUI extends UI {
                 .cardinality(1)
                 .casingUpper())
                 .apply();
+        hexa.addValueChangeListener(changeListener);
         root.addComponent(hexa);
 
         TextField phone = new TextField("phone");
@@ -92,6 +102,7 @@ public class DemoUI extends UI {
                 .mask("+36-99-999-999[9]")
                 .greedy(false)
                 .apply();
+        phone.addValueChangeListener(changeListener);
         root.addComponent(phone);
 
     }
