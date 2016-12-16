@@ -33,7 +33,9 @@ function() {
         if ($input === null) {
             var domElement = me.getElement(me.getParentId());
             //find the first text input in the descendant hierarchy including self
-            $input = $(domElement).find("*").addBack().filter("input[type=text]").first();
+            $input = $(domElement).find("*").addBack().filter("input[type=text]").first()
+                //fixes issue #1. Don't ask why!
+                .on("change", $.noop());
         }
         return $input;
     };
