@@ -32,7 +32,7 @@ import javax.servlet.annotation.WebServlet;
  */
 @Title("JqInputMask Add-on Demo")
 @SuppressWarnings("serial")
-@JavaScript({"jquery-1.11.1.min.js", "jquery.inputmask.bundle.2.4.18.min.js"})
+@JavaScript({"jquery-3.1.1.min.js", "jquery.inputmask.bundle.3.3.3.min.js"})
 public class DemoUI extends UI {
 
     @WebServlet(value = "/*")
