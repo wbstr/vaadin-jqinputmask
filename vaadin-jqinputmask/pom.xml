@@ -4,7 +4,7 @@
     <groupId>com.wcs.wcslib</groupId>
     <artifactId>wcslib-vaadin-widget-jqinputmask</artifactId>
     <packaging>jar</packaging>
-    <version>2.1</version>
+    <version>2.2-SNAPSHOT</version>
     <name>JqInputMask</name>
 
     <properties>
@@ -30,7 +30,7 @@
         <url>https://github.com/wbstr/vaadin-jqinputmask.git</url>
         <connection>scm:git:git@github.com:wbstr/vaadin-jqinputmask.git</connection>
         <developerConnection>scm:git:git@github.com:wbstr/vaadin-jqinputmask.git</developerConnection>
-      <tag>2.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <issueManagement>
